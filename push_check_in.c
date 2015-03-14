@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:07:17 by vame              #+#    #+#             */
-/*   Updated: 2015/03/14 15:08:01 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/14 17:02:50 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,24 @@ static void			push_check_doublons(t_pile *d)
 	}
 }
 
+static char			**push_copy_ac(int av, char **ac, t_pile *d)
+{
+	int				nb;
+	char			**new;
+
+	nb = 1;
+	new = NULL;
+	if (av > 3)
+	{
+		if (!ft_strcmp(ac[nb], "-v") || !ft_strcmp([nb], "-c"))
+	}
+}
+
 void				push_check_in(int av, char **ac, t_pile *d)
 {
+	char			**param;
+
+	param = NULL;
 	push_check_format_in(av, ac);
 	push_create_list_a(av, ac, d);
 	push_check_doublons(d);

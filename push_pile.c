@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_main.c                                        :+:      :+:    :+:   */
+/*   push_pile.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/14 09:22:44 by vame              #+#    #+#             */
-/*   Updated: 2015/03/14 17:02:51 by vame             ###   ########.fr       */
+/*   Created: 2015/03/14 16:52:52 by vame              #+#    #+#             */
+/*   Updated: 2015/03/14 16:56:00 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int					main(int av, char **ac)
+void				push_init_param(t_pile *d)
 {
-	t_pile			d;
-
-	push_init_param(&d);
-	push_check_in(av, ac, &d);
-	ft_lstiter(d.a, push_print_node);
-	ft_printf("%d\n", push_is_sort(d.a));
-	ft_lstdel(&d.a, push_del_node);
-	return (0);
+	d->c = 0;
+	d->v = 0;
+	d->nb = 0;
+	d->a = NULL;
+	d->b = NULL;
+	d->min = INT_MAX;
+	d->max = INT_MIN;
 }

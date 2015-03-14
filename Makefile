@@ -6,7 +6,7 @@
 #    By: vame <vame@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/23 11:23:10 by vame              #+#    #+#              #
-#    Updated: 2015/03/14 14:55:43 by vame             ###   ########.fr        #
+#    Updated: 2015/03/14 16:04:40 by vame             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ TMP = $(INC:.h=.h.gch)
 
 SRC =	./push_ope.c \
 		./push_main.c \
+		./push_sort.c \
 		./push_tools.c \
 		./push_check_in.c
 

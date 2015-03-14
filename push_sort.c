@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_main.c                                        :+:      :+:    :+:   */
+/*   push_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/14 09:22:44 by vame              #+#    #+#             */
-/*   Updated: 2015/03/14 17:02:51 by vame             ###   ########.fr       */
+/*   Created: 2015/03/14 15:58:35 by vame              #+#    #+#             */
+/*   Updated: 2015/03/14 16:50:35 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int					main(int av, char **ac)
+int					push_is_sort(t_list *list)
 {
-	t_pile			d;
+	int				*prev;
+	int				*next;
 
-	push_init_param(&d);
-	push_check_in(av, ac, &d);
-	ft_lstiter(d.a, push_print_node);
-	ft_printf("%d\n", push_is_sort(d.a));
-	ft_lstdel(&d.a, push_del_node);
-	return (0);
+	while (list && list->next)
+	{
+		prev = (int *)list->content;
+		next = (int *)list->next->content;
+		if (*next < *prev)
+			return (0);
+		list = list->next;
+	}
+	return (1);
 }
