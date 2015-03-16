@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 14:32:44 by vame              #+#    #+#             */
-/*   Updated: 2015/03/14 16:52:36 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/16 16:18:34 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,32 @@ t_list				*push_swap(t_list *list)
 		list = second;
 	}
 	return (list);
+}
+
+void				push_new_ope(t_pile *d, int l, int ope)
+{
+	char			*name;
+	t_list			*new_ope;
+
+	name = NULL;
+	if (ope == SIMPLE_S)
+		name = ft_strdup(l == A ? "sa" : "sb");
+	else if (ope == SIMPLE_R)
+		name = ft_strdup(l == A ? "ra" : "rb");
+	else if (ope == SIMPLE_P)
+		name = ft_strdup(l == A ? "pa" : "pb");
+	else if (ope == SIMPLE_RR)
+		name = ft_strdup(l == A ? "rra" : "rrb");
+	else if (ope == DOUBLE_S)
+		name = ft_strdup("ss");
+	else if (ope == DOUBLE_R)
+		name = ft_strdup("rr");
+	else if (ope == DOUBLE_RR)
+		name = ft_strdup("rrr");
+	if (!name)
+		push_print_error(ERR_MAL);
+	if (!(new_ope = ft_lstnew(name, ft_strlen(name) + 1)))
+		push_print_error(ERR_MAL);
+	ft_lstadd_back(&d->ope, new_ope);
+	ft_strdel(&name);
 }

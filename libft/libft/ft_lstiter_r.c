@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter_r.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vame <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/12 13:06:34 by vame              #+#    #+#             */
-/*   Updated: 2015/03/16 09:29:37 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/16 09:40:11 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+void	ft_lstiter_r(t_list *lst, void (*f)(t_list *elem))
 {
 	if (lst && f)
 	{
-		if (lst->next)
-			ft_lstiter(lst->next, f);
 		f(lst);
+		if (lst->next)
+			ft_lstiter_r(lst->next, f);
 	}
 }

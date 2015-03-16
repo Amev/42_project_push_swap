@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 09:22:44 by vame              #+#    #+#             */
-/*   Updated: 2015/03/14 17:02:51 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/16 16:57:06 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,14 @@ int					main(int av, char **ac)
 
 	push_init_param(&d);
 	push_check_in(av, ac, &d);
-	ft_lstiter(d.a, push_print_node_int);
-	ft_printf("%d\n", push_is_sort(d.a));
+	if (push_is_sort(d.a, CR))
+		ft_printf("{grn}List is already sort !{eoc}\n");
+	else
+	{
+		push_sort(&d);
+		ft_lstiter_r(d.ope, push_print_node_str);
+	}
+	ft_lstdel(&d.ope, push_del_node);
 	ft_lstdel(&d.a, push_del_node);
 	return (0);
 }

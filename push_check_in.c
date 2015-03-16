@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:07:17 by vame              #+#    #+#             */
-/*   Updated: 2015/03/14 17:02:50 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/16 16:40:23 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,13 @@ static void			push_check_format_in(int av, char **ac, int i)
 	}
 }
 
-static void			push_create_list_a(int av, char **ac, t_pile *d)
+static void			push_create_list_a(int av, char **ac, t_pile *d, int i)
 {
-	int				i;
 	int				res;
 	size_t			len;
 	t_list			*new;
 	long long int	l_res;
 
-	i = 1;
 	while (i < av)
 	{
 		len = ft_strlen(ac[i]);
@@ -48,7 +46,9 @@ static void			push_create_list_a(int av, char **ac, t_pile *d)
 		res = (int)l_res;
 		if (!(new = ft_lstnew(&res, 4)))
 			push_print_error(ERR_MAL);
-		ft_lstadd(&d->a, new);
+		ft_lstadd_back(&d->a, new);
+		d->max = res > d->max ? res : d->max;
+		d->min = res < d->min ? res : d->min;
 	}
 }
 
@@ -87,7 +87,7 @@ static void			push_check_opt(int av, char **ac, t_pile *d)
 		else if (!ft_strcmp(ac[nb], "-c"))
 			d->c = 1;
 		else
-			break;
+			break ;
 		nb++;
 	}
 	if (!(d->nb = av - nb))
@@ -96,11 +96,8 @@ static void			push_check_opt(int av, char **ac, t_pile *d)
 
 void				push_check_in(int av, char **ac, t_pile *d)
 {
-	char			**param;
-
-	param = NULL;
 	push_check_opt(av, ac, d);
 	push_check_format_in(av, ac, av - d->nb);
-	push_create_list_a(av, ac, d);
+	push_create_list_a(av, ac, d, av - d->nb);
 	push_check_doublons(d);
 }

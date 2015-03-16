@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:09:40 by vame              #+#    #+#             */
-/*   Updated: 2015/03/14 15:58:23 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/16 17:10:38 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,7 @@ void				push_print_node_int(t_list *elem)
 	int				*res;
 
 	res = (int *)elem->content;
-	ft_printf("%d", *res);
-	if (elem->next)
-		ft_printf(" ");
-	else
-		ft_printf("\n");
+	ft_printf("%d ", *res);
 }
 
 void				push_print_node_str(t_list *elem)
