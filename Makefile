@@ -23,6 +23,7 @@ SRC =	./push_ope.c \
 		./push_sort.c \
 		./push_pile.c \
 		./push_tools.c \
+		.:push_do_ope.c \
 		./push_check_in.c
 
 BINAIRE = $(SRC:.c=.o)

@@ -61,10 +61,10 @@ void				push_check_in(int av, char **ac, t_pile *d);
 */
 
 void				push_print_error(int err);
-void				push_print_node_int(t_list *elem);
+void				push_print_list_int(t_list *elem);
 void				push_print_node_str(t_list *elem);
 void				push_del_node(void *content, size_t size);
-void				push_print_progression(t_pile *d, int a, int b);
+void				push_do_ope(t_pile *d, int a, int b);
 
 /*
 ** fonctions d'operations : rotation, swap, push.

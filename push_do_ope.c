@@ -12,28 +12,31 @@
 
 #include "push_swap.h"
 
-static void			push_print_double_ope(t_pile *d)
+static void			push_print_double_ope(t_pile *d, int a)
 {
+	int				ope;
 	char			*str;
 	t_list			*tmp;
 
+	ope = 0;
 	while (tmp->next)
 		tmp = tmp->next;
 	str = (char *)tmp->content;
-	if (d->c)
-		ft_printf("{ylw}");
+	if (a == SIMPLE_S)
+		ope = 1;
 	ft_printf("%s :\na : ", str);
-	ft_lstiter_r(d->a, push_print_node_int);
-	ft_printf("\nb : ");
-	ft_lstiter_r(d->b, push_print_node_int);
-	ft_printf("{eoc}\n");
+	push_print_list_int(d->a, ope, d->c);
+	ft_printf("b : ");
+	push_print_list_int(d->b, ope, d->c);
 }
 
-static void			push_print_simple_ope(t_pile *d, int l, int last)
+static void			push_print_simple_ope(t_pile *d, int l, int last, int a)
 {
+	int				ope;
 	char			*str;
 	t_list			*tmp;
 
+	ope = 0;
 	if (last)
 		while (tmp->next->next)
 			tmp = tmp->next;
@@ -41,8 +44,14 @@ static void			push_print_simple_ope(t_pile *d, int l, int last)
 		while (tmp->next)
 			tmp = tmp->next;
 	str = (char *)tmp->content;
-	push_print_pile(d, l, l == A ? 1 : 0);
-	push_print_pile(d, l, l == A ? 1 : 0);
+	if (a == SIMPLE_S)
+		ope = 1;
+	else if (a == SIMPLE_P)
+		ope = 2;
+	ft_printf("%s :\na : ", str);
+	push_print_list_int(d->a, ope, l == A ? d->c : 0);
+	ft_printf("b : ");
+	push_print_list_int(d->b, ope, l == B ? d->c : 0);
 }
 
 void				push_do_ope(t_pile *d, int a, int b)
@@ -57,12 +66,12 @@ void				push_do_ope(t_pile *d, int a, int b)
 	{
 		push_new_ope(d, A, a);
 		if (d->v)
-			push_print_simple_ope(d, A, b == 0 ? 0 : 1);
+			push_print_simple_ope(d, A, b == 0 ? 0 : 1, a);
 	}
 	else if (b)
 	{
 		push_new_ope(d, B, b);
 		if (d->v)
-			push_print_simple_ope(d, B, 0);
+			push_print_simple_ope(d, B, 0, b);
 	}
 }

@@ -21,12 +21,48 @@ void				push_print_error(int err)
 	exit(err);
 }
 
-void				push_print_node_int(t_list *elem)
+static void			push_print_color(t_list *list, int color)
 {
 	int				*res;
 
-	res = (int *)elem->content;
-	ft_printf("%d ", *res);
+	if (color)
+		ft_printf("{ylw}");
+	while (list)
+	{
+		res = (int *)list->content;
+		ft_printf("%d ", *res);
+		list = list->next;
+	}
+	if (color)
+		ft_printf("{eoc}");
+}
+
+void				push_print_list_int(t_list *list, int ope, int color)
+{
+	int				*res;
+
+	if (ope == 0 || !color)
+		push_print_color(list, 0);
+	else if (ope == 1)
+	{
+		while (list->next)
+		{
+			res = (int *)list->content;
+			ft_printf("%d ", *res);
+			list = list->next;
+		}
+		push_print_color(list, 1);
+	}
+	else if (ope == 2)
+	{
+		while (list->next->next)
+		{
+			res = (int *)list->content;
+			ft_printf("%d ", *res);
+			list = list->next;
+		}
+		push_print_color(list, 1);
+	}
 }
 
 void				push_print_node_str(t_list *elem)
