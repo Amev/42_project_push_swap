@@ -12,12 +12,10 @@
 
 #include "push_swap.h"
 
-static void			push_check_format_in(int av, char **ac)
+static void			push_check_format_in(int av, char **ac, int i)
 {
-	int				i;
 	int				j;
 
-	i = 1;
 	if (av < 2)
 		push_print_error(ERR_ARG);
 	while (i++ < av)
@@ -77,17 +75,23 @@ static void			push_check_doublons(t_pile *d)
 	}
 }
 
-static char			**push_copy_ac(int av, char **ac, t_pile *d)
+static void			push_check_opt(int av, char **ac, t_pile *d)
 {
 	int				nb;
-	char			**new;
 
 	nb = 1;
-	new = NULL;
-	if (av > 3)
+	while (av > 1 && nb < av)
 	{
-		if (!ft_strcmp(ac[nb], "-v") || !ft_strcmp([nb], "-c"))
+		if (!ft_strcmp(ac[nb], "-v"))
+			d->v = 1;
+		else if (!ft_strcmp(ac[nb], "-c"))
+			d->c = 1;
+		else
+			break;
+		nb++;
 	}
+	if (!(d->nb = av - nb))
+		push_print_error(ERR_ARG);
 }
 
 void				push_check_in(int av, char **ac, t_pile *d)
@@ -95,7 +99,8 @@ void				push_check_in(int av, char **ac, t_pile *d)
 	char			**param;
 
 	param = NULL;
-	push_check_format_in(av, ac);
+	push_check_opt(av, ac, d);
+	push_check_format_in(av, ac, av - d->nb);
 	push_create_list_a(av, ac, d);
 	push_check_doublons(d);
 }

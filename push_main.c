@@ -18,7 +18,7 @@ int					main(int av, char **ac)
 
 	push_init_param(&d);
 	push_check_in(av, ac, &d);
-	ft_lstiter(d.a, push_print_node);
+	ft_lstiter(d.a, push_print_node_int);
 	ft_printf("%d\n", push_is_sort(d.a));
 	ft_lstdel(&d.a, push_del_node);
 	return (0);

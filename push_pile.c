@@ -19,6 +19,7 @@ void				push_init_param(t_pile *d)
 	d->nb = 0;
 	d->a = NULL;
 	d->b = NULL;
+	d->ope = NULL;
 	d->min = INT_MAX;
 	d->max = INT_MIN;
 }

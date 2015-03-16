@@ -28,13 +28,14 @@ typedef struct		s_pile
 	int				nb;
 	struct s_list	*a;
 	struct s_list	*b;
+	struct s_list	*ope;
 }					t_pile;
 
 /*
 ** fonctions de preparation, de creation de la liste et de check des erreurs
 */
 
-void				push_init_param(t_pile *d)
+void				push_init_param(t_pile *d);
 void				push_check_in(int av, char **ac, t_pile *d);
 
 /*
@@ -42,7 +43,8 @@ void				push_check_in(int av, char **ac, t_pile *d);
 */
 
 void				push_print_error(int err);
-void				push_print_node(t_list *elem);
+void				push_print_node_int(t_list *elem);
+void				push_print_node_str(t_list *elem);
 void				push_del_node(void *content, size_t size);
 
 /*

@@ -21,12 +21,28 @@ void				push_print_error(int err)
 	exit(err);
 }
 
-void				push_print_node(t_list *elem)
+void				push_print_node_int(t_list *elem)
 {
 	int				*res;
 
 	res = (int *)elem->content;
-	ft_printf("%d\n", *res);
+	ft_printf("%d", *res);
+	if (elem->next)
+		ft_printf(" ");
+	else
+		ft_printf("\n");
+}
+
+void				push_print_node_str(t_list *elem)
+{
+	char			*res;
+
+	res = (char *)elem->content;
+	ft_printf("%s", res);
+	if (elem->next)
+		ft_printf(" ");
+	else
+		ft_printf("\n");
 }
 
 void				push_del_node(void *content, size_t size)
