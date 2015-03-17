@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:07:17 by vame              #+#    #+#             */
-/*   Updated: 2015/03/16 16:40:23 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/17 13:17:09 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ static void			push_check_format_in(int av, char **ac, int i)
 {
 	int				j;
 
-	if (av < 2)
-		push_print_error(ERR_ARG);
 	while (i++ < av)
 	{
 		j = 0;
@@ -90,8 +88,7 @@ static void			push_check_opt(int av, char **ac, t_pile *d)
 			break ;
 		nb++;
 	}
-	if (!(d->nb = av - nb))
-		push_print_error(ERR_ARG);
+	d->nb = av - nb;
 }
 
 void				push_check_in(int av, char **ac, t_pile *d)

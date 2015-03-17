@@ -6,27 +6,29 @@
 #    By: vame <vame@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/23 11:23:10 by vame              #+#    #+#              #
-#    Updated: 2015/03/16 09:27:07 by vame             ###   ########.fr        #
+#    Updated: 2015/03/17 13:17:54 by vame             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-INC = ./push_swap.h
-
-CFLAGS = -Werror -Wextra -Wall -I libft/includes/
-
-TMP = $(INC:.h=.h.gch)
+INC = 	./push_swap.h
 
 SRC =	./push_ope.c \
 		./push_main.c \
 		./push_sort.c \
 		./push_pile.c \
 		./push_tools.c \
-		.:push_do_ope.c \
+		./push_sort2.c \
+		./push_error.c \
+		./push_do_ope.c \
 		./push_check_in.c
 
 BINAIRE = $(SRC:.c=.o)
+
+TMP = $(INC:.h=.h.gch)
+
+CFLAGS = -Werror -Wextra -Wall -I libft/includes/
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 15:58:35 by vame              #+#    #+#             */
-/*   Updated: 2015/03/16 17:10:40 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/17 17:07:52 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,20 @@ static void			push_cut_a(t_pile *d)
 	int				*res2;
 
 	i = 0;
-	res1 = (int *)d->a->content;
-	res2 = (int *)d->a->next->content;
-	if (*res1 > *res2)
-	{
-		d->a = push_swap(d->a);
-		push_new_ope(d, A, SIMPLE_S);
-	}
 	while (i++ < d->nb / 2)
 	{
-		push_push(&d->a, &d->b);
-		push_new_ope(d, B, SIMPLE_P);
+		res1 = (int *)d->a->content;
+		res2 = (int *)d->a->next->content;
+		if (*res1 > *res2)
+			push_do_ope(d, SIMPLE_S, 0);
+		if (push_is_sort(d->a, CR))
+			break ;
+		else
+			push_do_ope(d, 0, SIMPLE_P);
 	}
 }
 
-static int			push_which_ope(t_list *list, int s, int l, t_pile *d)
+int					push_which_ope(t_list *list, int s, int l, t_pile *d)
 {
 	int				r[4];
 	int				*res1;
@@ -48,10 +47,10 @@ static int			push_which_ope(t_list *list, int s, int l, t_pile *d)
 		r[3] = SIMPLE_S;
 	else if (s == DCR && *res2 > *res1 && *res1 != r[1])
 		r[3] = SIMPLE_S;
-	else if (*res1 < r[0] && r[0] != r[2])
-		r[3] = SIMPLE_RR;
+	else if (*res1 < r[0] && r[0] != (l == A ? r[2] : r[1]))
+		r[3] = l == A ? SIMPLE_RR : SIMPLE_R;
 	else
-		r[3] = SIMPLE_R;
+		r[3] = l == A ? SIMPLE_R : SIMPLE_RR;
 	return (r[3]);
 }
 
@@ -70,8 +69,10 @@ static void			push_sort_list(t_pile *d)
 		b = 0;
 		if (!push_is_sort(d->a, CR))
 			a = push_which_ope(d->a, CR, A, d);
+		//a = push_which_ope_a(d);
 		if (!push_is_sort(d->b, DCR))
-			b = push_which_ope(d->b, DCR, B, d);
+			b = push_which_ope_b(d);
+		ft_printf("a = %d | b = %d.\n", a, b);
 		push_do_ope(d, a, b);
 	}
 }
@@ -87,19 +88,17 @@ static void			push_insert_b(t_pile *d)
 		push_minmax(A, d);
 		res1 = (int *)d->b->content;
 		if (*res1 < d->min_a || *res1 > d->max_a)
-			while (!push_is_sort(d->a, CR) && (d->a = push_rotate_r(d->a)))
-				push_new_ope(d, A, SIMPLE_RR);
+			while (!push_is_sort(d->a, CR))
+				push_do_ope(d, SIMPLE_RR, 0);
 		while (*res1 > d->min_a && *res1 < d->max_a)
 		{
 			res2 = (int *)d->a->content;
 			res3 = push_value_last_node(d->a);
 			if (*res1 < *res2 && res3 < *res1)
 				break ;
-			d->a = push_rotate(d->a);
-			push_new_ope(d, A, SIMPLE_R);
+			push_do_ope(d, *res1 < *res2 ? SIMPLE_RR : SIMPLE_R, 0);
 		}
-		push_push(&d->b, &d->a);
-		push_new_ope(d, A, SIMPLE_P);
+		push_do_ope(d, SIMPLE_P, 0);
 	}
 }
 
@@ -109,8 +108,5 @@ void				push_sort(t_pile *d)
 	push_sort_list(d);
 	push_insert_b(d);
 	while (!push_is_sort(d->a, CR))
-	{
-		d->a = push_rotate(d->a);
-		push_new_ope(d, A, SIMPLE_R);
-	}
+		push_do_ope(d, SIMPLE_RR, 0);
 }

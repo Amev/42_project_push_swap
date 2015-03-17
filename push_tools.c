@@ -6,20 +6,11 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:09:40 by vame              #+#    #+#             */
-/*   Updated: 2015/03/16 17:10:38 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/17 16:56:56 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void				push_print_error(int err)
-{
-	if (err == ERR_ARG)
-		ft_printf("{red}Error of arguments.{eoc}\n");
-	else if (err == ERR_MAL)
-		ft_printf("{red}Malloc error.{eoc}\n");
-	exit(err);
-}
 
 static void			push_print_color(t_list *list, int color)
 {
@@ -35,34 +26,46 @@ static void			push_print_color(t_list *list, int color)
 	}
 	if (color)
 		ft_printf("{eoc}");
+	ft_printf("\n");
+}
+
+void				push_cpy_list(t_list *list, t_list **tmp)
+{
+	t_list			*new;
+
+	if (list)
+	{
+		push_cpy_list(list->next, tmp);
+		if (!(new = ft_lstnew(list->content, list->content_size)))
+			push_print_error(ERR_MAL);
+		ft_lstadd_back(tmp, new);
+	}
 }
 
 void				push_print_list_int(t_list *list, int ope, int color)
 {
 	int				*res;
+	t_list			*tmp;
 
+	tmp = NULL;
+	push_cpy_list(list, &tmp);
 	if (ope == 0 || !color)
-		push_print_color(list, 0);
-	else if (ope == 1)
+		push_print_color(tmp, color ? 1 : 0);
+	else
 	{
-		while (list->next)
+		while (ope == 1 && tmp->next->next && (res = (int *)tmp->content))
 		{
-			res = (int *)list->content;
 			ft_printf("%d ", *res);
-			list = list->next;
+			tmp = tmp->next;
 		}
-		push_print_color(list, 1);
-	}
-	else if (ope == 2)
-	{
-		while (list->next->next)
+		while (ope == 2 && tmp->next && (res = (int *)tmp->content))
 		{
-			res = (int *)list->content;
 			ft_printf("%d ", *res);
-			list = list->next;
+			tmp = tmp->next;
 		}
-		push_print_color(list, 1);
+		push_print_color(tmp, 1);
 	}
+	ft_lstdel(&tmp, push_del_node);
 }
 
 void				push_print_node_str(t_list *elem)

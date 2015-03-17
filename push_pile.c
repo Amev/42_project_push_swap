@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 16:52:52 by vame              #+#    #+#             */
-/*   Updated: 2015/03/16 16:25:46 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/17 13:45:58 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void				push_init_param(t_pile *d)
 	d->ope = NULL;
 	d->min = INT_MAX;
 	d->max = INT_MIN;
+	d->recursion = 4;
 }
 
 int					push_is_sort(t_list *list, int sens)
