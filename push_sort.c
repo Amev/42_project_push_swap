@@ -31,7 +31,7 @@ static void			push_cut_a(t_pile *d)
 			push_do_ope(d, 0, SIMPLE_P);
 	}
 }
-
+/*
 int					push_which_ope(t_list *list, int s, int l, t_pile *d)
 {
 	int				r[4];
@@ -52,7 +52,7 @@ int					push_which_ope(t_list *list, int s, int l, t_pile *d)
 	else
 		r[3] = l == A ? SIMPLE_R : SIMPLE_RR;
 	return (r[3]);
-}
+}*/
 
 static void			push_sort_list(t_pile *d)
 {
@@ -68,8 +68,8 @@ static void			push_sort_list(t_pile *d)
 		a = 0;
 		b = 0;
 		if (!push_is_sort(d->a, CR))
-			a = push_which_ope(d->a, CR, A, d);
-		//a = push_which_ope_a(d);
+			a = push_which_ope_a(d);
+		//a = push_which_ope(d->a, CR, A, d);
 		if (!push_is_sort(d->b, DCR))
 			b = push_which_ope_b(d);
 		ft_printf("a = %d | b = %d.\n", a, b);
