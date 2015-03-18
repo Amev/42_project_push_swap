@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 15:58:35 by vame              #+#    #+#             */
-/*   Updated: 2015/03/17 17:07:52 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/18 08:43:58 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,9 @@ static void			push_sort_list(t_pile *d)
 		a = 0;
 		b = 0;
 		if (!push_is_sort(d->a, CR))
-			a = push_which_ope_a(d);
-		//a = push_which_ope(d->a, CR, A, d);
+			a = push_which_ope(d, A);
 		if (!push_is_sort(d->b, DCR))
-			b = push_which_ope_b(d);
+			b = push_which_ope(d, B);
 		ft_printf("a = %d | b = %d.\n", a, b);
 		push_do_ope(d, a, b);
 	}

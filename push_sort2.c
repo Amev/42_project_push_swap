@@ -6,12 +6,12 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/17 11:39:29 by vame              #+#    #+#             */
-/*   Updated: 2015/03/17 13:54:28 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/18 08:19:53 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/*
 static void			push_sort_list_b(t_pile *d)
 {
 	int				b;
@@ -71,4 +71,4 @@ void				push_sort_long(t_pile *d)
 		ft_printf("x\n");
 	}
 	push_sort(d);
-}
+}*/

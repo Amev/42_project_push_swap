@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 09:20:51 by vame              #+#    #+#             */
-/*   Updated: 2015/03/17 15:50:00 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/18 08:43:57 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void				push_sort_long(t_pile *d);
 void				push_minmax(int l, t_pile *d);
 int					push_value_last_node(t_list *list);
 int					push_is_sort(t_list *list, int sens);
-int					push_which_ope(t_list *list, int s, int l, t_pile *d);
 int					push_which_ope(t_pile *d, int l);
 int					push_which_ope_a(t_pile *d);
 int					push_which_ope_b(t_pile *d);
