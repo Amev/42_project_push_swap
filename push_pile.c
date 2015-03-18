@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 16:52:52 by vame              #+#    #+#             */
-/*   Updated: 2015/03/18 11:17:47 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/18 12:56:59 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,14 @@ void				push_minmax(int l, t_pile *d)
 		}
 		tmp = tmp->next;
 	}
+}
+
+int					push_link_value_insert(t_pile *d, int **a, int **b, int *l)
+{
+	*a = (int *)d->a->content;
+	*b = (int *)d->b->content;
+	*l = push_value_last_node(d->a);
+	return (1);
 }
 
 int					push_value_last_node(t_list *list)

@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 15:58:35 by vame              #+#    #+#             */
-/*   Updated: 2015/03/18 11:49:28 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/18 12:57:12 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,31 +54,6 @@ static void			push_sort_list(t_pile *d)
 		push_do_ope(d, a, b);
 	}
 }
-/*
-static void			push_insert_b(t_pile *d)
-{
-	int				res3;
-	int				*res1;
-	int				*res2;
-
-	while (d->b)
-	{
-		push_minmax(A, d);
-		res1 = (int *)d->b->content;
-		if (*res1 < d->min_a || *res1 > d->max_a)
-			while (!push_is_sort(d->a, CR))
-				push_do_ope(d, SIMPLE_RR, 0);
-		while (*res1 > d->min_a && *res1 < d->max_a)
-		{
-			res2 = (int *)d->a->content;
-			res3 = push_value_last_node(d->a);
-			if (*res1 < *res2 && res3 < *res1)
-				break ;
-			push_do_ope(d, *res1 < *res2 ? SIMPLE_RR : SIMPLE_R, 0);
-		}
-		push_do_ope(d, SIMPLE_P, 0);
-	}
-}*/
 
 void				push_sort(t_pile *d)
 {

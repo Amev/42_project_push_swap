@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/18 11:18:32 by vame              #+#    #+#             */
-/*   Updated: 2015/03/18 11:49:31 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/18 12:56:50 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int			push_insert_which_ope(t_pile *d, int cas)
 	int				ret_r;
 
 	ret = cas == MIN ? push_insert_min(d, R) : push_insert_place(d, R);
-	ret_r = cas == MIN ? push_insert_min(d, RR) : push_insert_place(d, R);
+	ret_r = cas == MIN ? push_insert_min(d, RR) : push_insert_place(d, RR);
 	ret = ret <= ret_r ? SIMPLE_R : SIMPLE_RR;
 	return (ret);
 }
@@ -101,9 +101,7 @@ void				push_insert_b(t_pile *d)
 	while (d->b)
 	{
 		push_minmax(A, d);
-		a = (int *)d->a->content;
-		b = (int *)d->b->content;
-		last_a = push_value_last_node(d->a);
+		push_link_value_insert(d, &a, &b, &last_a);
 		if (*b < d->min_a || *b > d->max_a)
 		{
 			ope = push_insert_which_ope(d, MIN);
@@ -113,7 +111,8 @@ void				push_insert_b(t_pile *d)
 		else if (*b > *a || *b < last_a)
 		{
 			ope = push_insert_which_ope(d, 0);
-			while (*b > *a || *b < last_a)
+			while (push_link_value_insert(d, &a, &b, &last_a)
+					&& (*b > *a || *b < last_a))
 				push_do_ope(d, ope, 0);
 		}
 		push_do_ope(d, SIMPLE_P, 0);
