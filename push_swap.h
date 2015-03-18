@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 09:20:51 by vame              #+#    #+#             */
-/*   Updated: 2015/03/18 08:43:57 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/18 11:44:40 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,14 @@
 # define A 1
 # define B 2
 
+# define R 1
+# define RR 2
+
 # define CR 1
 # define DCR 2
+
+# define MIN 1
+# define MAX 2
 
 # define ERR_ARG 1
 # define ERR_MAL 2
@@ -62,34 +68,34 @@ void				push_check_in(int av, char **ac, t_pile *d);
 */
 
 void				push_print_error(int err);
-void				push_print_list_int(t_list *list, int ope, int color);
 void				push_print_node_str(t_list *elem);
-void				push_del_node(void *content, size_t size);
 void				push_do_ope(t_pile *d, int a, int b);
+void				push_del_node(void *content, size_t size);
 void				push_cpy_list(t_list *list, t_list **tmp);
+void				push_print_list_int(t_list *list, int ope, int color);
 
 /*
 ** fonctions d'operations : rotation, swap, push.
 */
 
+t_list				*push_swap(t_list *list);
+t_list				*push_rotate(t_list *list);
+t_list				*push_rotate_r(t_list *list);
+void				push_do(t_pile *d, int l, int ope);
 void				push_new_ope(t_pile *d, int l, int ope);
 void				push_push(t_list **minus, t_list **plus);
-void				push_do(t_pile *d, int l, int ope);
-t_list				*push_rotate_r(t_list *list);
-t_list				*push_rotate(t_list *list);
-t_list				*push_swap(t_list *list);
 
 /*
 ** fonctions de tri.
 */
 
 void				push_sort(t_pile *d);
+void				push_insert_b(t_pile *d);
 void				push_sort_long(t_pile *d);
+void				push_try_insert(t_pile *d);
 void				push_minmax(int l, t_pile *d);
+int					push_which_ope(t_pile *d, int l);
 int					push_value_last_node(t_list *list);
 int					push_is_sort(t_list *list, int sens);
-int					push_which_ope(t_pile *d, int l);
-int					push_which_ope_a(t_pile *d);
-int					push_which_ope_b(t_pile *d);
 
 #endif

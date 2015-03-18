@@ -6,7 +6,7 @@
 /*   By: vame <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/06 13:45:42 by vame              #+#    #+#             */
-/*   Updated: 2015/02/10 10:34:07 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/18 09:10:40 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char		**ft_create_dst(char const *s)
 	s = ft_strnb((char *)s, &str_nb);
 	if (!(dst = (char **)malloc(sizeof(*dst) * (str_nb + 1))))
 		return (NULL);
-	dst[str_nb] = '\0';
+	dst[str_nb] = NULL;
 	return (dst);
 }
 

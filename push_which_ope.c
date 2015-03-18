@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/17 16:57:10 by vame              #+#    #+#             */
-/*   Updated: 2015/03/18 08:43:56 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/18 11:41:51 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@ static int			push_before_swap(t_pile *d, int sens, int l)
 	t_list			*(*f[2])(t_list *);
 
 	ret[0] = 0;
-	ret[1] = 1;
-	f[0] = sens == 1 ? push_rotate : push_rotate_r;
-	f[1] = sens == 1 ? push_rotate_r : push_rotate;
-	d->b = f[0](d->b);
-	push_link_value(d->b, &res1, &res2);
+	ret[1] = 0;
+	f[0] = sens == R ? push_rotate : push_rotate_r;
+	f[1] = sens == R ? push_rotate_r : push_rotate;
+	push_link_value(l == B ? d->b : d->a, &res1, &res2);
 	while (((l == B && (*res2 < *res1 || *res1 == d->min_b)) ||
 			(l == A && (*res2 > *res1 || *res1 == d->max_a))) && ret[1] < d->nb)
 	{
@@ -45,6 +44,31 @@ static int			push_before_swap(t_pile *d, int sens, int l)
 		d->a = l == A ? f[1](d->a) : d->a;
 	}
 	return (ret[1]);
+}
+
+static int			push_is_sort_after_rot(t_pile *d, int sens, int l)
+{
+	int				i;
+	int				ret;
+	t_list			*(*f[2])(t_list *);
+
+	i = 0;
+	ret = 0;
+	f[0] = sens == R ? push_rotate : push_rotate_r;
+	f[1] = sens == R ? push_rotate_r : push_rotate;
+	while ((l == A && !push_is_sort(d->a, CR)) ||
+			(l == B && !push_is_sort(d->b, DCR)))
+	{
+		ret += 1;
+		d->b = l == B ? f[0](d->b) : d->b;
+		d->a = l == A ? f[0](d->a) : d->a;
+	}
+	while (i++ < ret)
+	{
+		d->b = l == B ? f[1](d->b) : d->b;
+		d->a = l == A ? f[1](d->a) : d->a;
+	}
+	return (ret);
 }
 
 int					push_which_ope(t_pile *d, int l)
@@ -63,9 +87,13 @@ int					push_which_ope(t_pile *d, int l)
 		ret = SIMPLE_S;
 	else
 	{
-		ret = push_before_swap(d, 1, l);
-		ret_r = push_before_swap(d, 2, l);
-		ft_printf("rr = %d | r = %d.\n", ret_r, ret);
+		ret = push_before_swap(d, R, l);
+		ret_r = push_before_swap(d, RR, l);
+		if (ret == ret_r && ret == d->nb)
+		{
+			ret = push_is_sort_after_rot(d, R, l);
+			ret_r = push_is_sort_after_rot(d, RR, l);
+		}
 		ret = ret <= ret_r ? SIMPLE_R : SIMPLE_RR;
 	}
 	return (ret);

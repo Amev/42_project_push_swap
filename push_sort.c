@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 15:58:35 by vame              #+#    #+#             */
-/*   Updated: 2015/03/18 08:43:58 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/18 11:49:28 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,6 @@ static void			push_cut_a(t_pile *d)
 			push_do_ope(d, 0, SIMPLE_P);
 	}
 }
-/*
-int					push_which_ope(t_list *list, int s, int l, t_pile *d)
-{
-	int				r[4];
-	int				*res1;
-	int				*res2;
-
-	res1 = (int *)list->content;
-	res2 = (int *)list->next->content;
-	r[0] = push_value_last_node(d->a);
-	r[1] = l == A ? d->min_a : d->min_b;
-	r[2] = l == A ? d->max_a : d->max_b;
-	if (s == CR && *res2 < *res1 && *res1 != r[2])
-		r[3] = SIMPLE_S;
-	else if (s == DCR && *res2 > *res1 && *res1 != r[1])
-		r[3] = SIMPLE_S;
-	else if (*res1 < r[0] && r[0] != (l == A ? r[2] : r[1]))
-		r[3] = l == A ? SIMPLE_RR : SIMPLE_R;
-	else
-		r[3] = l == A ? SIMPLE_R : SIMPLE_RR;
-	return (r[3]);
-}*/
 
 static void			push_sort_list(t_pile *d)
 {
@@ -66,16 +44,17 @@ static void			push_sort_list(t_pile *d)
 	while (a || b)
 	{
 		a = 0;
+		if (b == 0)
+			push_try_insert(d);
 		b = 0;
 		if (!push_is_sort(d->a, CR))
 			a = push_which_ope(d, A);
 		if (!push_is_sort(d->b, DCR))
 			b = push_which_ope(d, B);
-		ft_printf("a = %d | b = %d.\n", a, b);
 		push_do_ope(d, a, b);
 	}
 }
-
+/*
 static void			push_insert_b(t_pile *d)
 {
 	int				res3;
@@ -99,7 +78,7 @@ static void			push_insert_b(t_pile *d)
 		}
 		push_do_ope(d, SIMPLE_P, 0);
 	}
-}
+}*/
 
 void				push_sort(t_pile *d)
 {

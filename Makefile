@@ -6,7 +6,7 @@
 #    By: vame <vame@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/23 11:23:10 by vame              #+#    #+#              #
-#    Updated: 2015/03/18 08:20:59 by vame             ###   ########.fr        #
+#    Updated: 2015/03/18 11:44:14 by vame             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ SRC =	./push_ope.c \
 		./push_sort.c \
 		./push_pile.c \
 		./push_tools.c \
-		./push_sort2.c \
 		./push_error.c \
+		./push_insert.c \
 		./push_do_ope.c \
 		./push_check_in.c \
 		./push_which_ope.c
