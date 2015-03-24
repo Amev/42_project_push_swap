@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 14:32:44 by vame              #+#    #+#             */
-/*   Updated: 2015/03/18 08:18:11 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/24 16:59:23 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ void				push_new_ope(t_pile *d, int l, int ope)
 		push_print_error(ERR_MAL);
 	ft_lstadd_back(&d->ope, new_ope);
 	ft_strdel(&name);
+	d->nb_ope += 1;
 }

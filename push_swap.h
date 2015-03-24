@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 09:20:51 by vame              #+#    #+#             */
-/*   Updated: 2015/03/18 12:55:45 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/24 13:30:56 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct		s_pile
 {
 	int				c;
 	int				v;
+	int				n;
+	int				r;
 	int				nb;
 	int				min;
 	int				max;
@@ -50,6 +52,9 @@ typedef struct		s_pile
 	int				max_a;
 	int				min_b;
 	int				max_b;
+	int				sens_a;
+	int				sens_b;
+	int				nb_ope;
 	int				recursion;
 	struct s_list	*a;
 	struct s_list	*b;

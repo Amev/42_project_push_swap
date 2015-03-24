@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 16:52:52 by vame              #+#    #+#             */
-/*   Updated: 2015/03/18 12:56:59 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/24 13:35:06 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ void				push_init_param(t_pile *d)
 {
 	d->c = 0;
 	d->v = 0;
+	d->n = 0;
 	d->nb = 0;
 	d->a = NULL;
 	d->b = NULL;
 	d->ope = NULL;
+	d->nb_ope = 0;
 	d->min = INT_MAX;
 	d->max = INT_MIN;
 	d->recursion = 4;

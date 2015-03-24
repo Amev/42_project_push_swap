@@ -6,7 +6,7 @@
 /*   By: vame <vame@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/14 10:07:17 by vame              #+#    #+#             */
-/*   Updated: 2015/03/17 13:17:09 by vame             ###   ########.fr       */
+/*   Updated: 2015/03/24 16:59:24 by vame             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,25 @@ static void			push_check_doublons(t_pile *d)
 
 static void			push_check_opt(int av, char **ac, t_pile *d)
 {
+	int				i;
 	int				nb;
 
 	nb = 1;
-	while (av > 1 && nb < av)
+	while (av > 1 && nb < av && ac[nb][0] == '-' && (i = 1))
 	{
-		if (!ft_strcmp(ac[nb], "-v"))
-			d->v = 1;
-		else if (!ft_strcmp(ac[nb], "-c"))
-			d->c = 1;
-		else
+		while (ac[nb][i])
+		{
+			if (ac[nb][i] == 'v')
+				d->v = 1;
+			else if (ac[nb][i] == 'c')
+				d->c = 1;
+			else if (ac[nb][i] == 'n')
+				d->n = 1;
+			else
+				break ;
+			i++;
+		}
+		if (ac[nb][i])
 			break ;
 		nb++;
 	}
