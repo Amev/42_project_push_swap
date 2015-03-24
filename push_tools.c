@@ -12,12 +12,12 @@
 
 #include "push_swap.h"
 
-static void			push_print_color(t_list *list, int color)
+static void			push_print_color(t_list *list, int color, int rr)
 {
 	int				*res;
 
 	if (color)
-		ft_printf("{ylw}");
+		ft_printf(rr ? "{ylw}" : "{grn}");
 	while (list)
 	{
 		res = (int *)list->content;
@@ -49,8 +49,8 @@ void				push_print_list_int(t_list *list, int ope, int color)
 
 	tmp = NULL;
 	push_cpy_list(list, &tmp);
-	if (ope == 0 || !color)
-		push_print_color(tmp, color ? 1 : 0);
+	if (ope == 0 || ope == 3 || !color)
+		push_print_color(tmp, color ? 1 : 0, ope == 3 ? 1 : 0);
 	else
 	{
 		while (ope == 1 && tmp->next->next && (res = (int *)tmp->content))
@@ -63,7 +63,7 @@ void				push_print_list_int(t_list *list, int ope, int color)
 			ft_printf("%d ", *res);
 			tmp = tmp->next;
 		}
-		push_print_color(tmp, 1);
+		push_print_color(tmp, 1, 0);
 	}
 	ft_lstdel(&tmp, push_del_node);
 }

@@ -25,6 +25,8 @@ static void			push_print_double_ope(t_pile *d, int a)
 	str = (char *)tmp->content;
 	if (a == SIMPLE_S)
 		ope = 1;
+	else if (a == SIMPLE_RR)
+		ope = 3;
 	ft_printf("%s :\na : ", str);
 	push_print_list_int(d->a, ope, d->c);
 	ft_printf("b : ");
@@ -47,6 +49,9 @@ static void			push_print_simple_ope(t_pile *d, int l, int a)
 		ope = 1;
 	else if (a == SIMPLE_P)
 		ope = 2;
+	else if (a == SIMPLE_RR)
+		ope = 3;
+	ft_printf("%s :\na : ", str);
 	ft_printf("%s :\na : ", str);
 	push_print_list_int(d->a, ope, l == A ? d->c : 0);
 	ft_printf("b : ");
