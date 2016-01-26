@@ -56,8 +56,8 @@ $(NAME): $(BINAIRE) $(INC)
 		$(CC) $(CFLAGS) -I $(INCLUDEDIR) -c $^ -o $@
 
 lib:
-		@git --quiet submodule init
-		@git --quiet submodule update
+		@git submodule --quiet init
+		@git submodule --quiet update
 		@make -s -C libft/
 
 cleanlib:
