@@ -56,9 +56,9 @@ $(NAME): $(BINAIRE) $(INC)
 		$(CC) $(CFLAGS) -I $(INCLUDEDIR) -c $^ -o $@
 
 lib:
-		git submodule init
-		git submodule update
-		make -C libft/
+		@git submodule init
+		@git submodule update
+		@make -s -C libft/
 
 cleanlib:
 		@make -s -C libft/ fclean
